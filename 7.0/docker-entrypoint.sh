@@ -1,15 +1,5 @@
 #!/bin/bash
 
-#PHP_TIMEZONE=ZONE
-#PHP_MEMORY_LIMIT=NUMBER
-#PHP_SHORT_OPEN_TAG=On/Off
-#PHP_UPLOAD_MAX_FILEZIZE=number
-#PHP_MAX_EXECUTION_TIME=number
-#PHP_MAX_INPUT_TIME=number
-#PHP_DISPLAY_ERRORS=On/Off
-#PHP_POST_MAX_SIZE=number
-#PHP_ALLOW_URL_FOPEN=On/Off
-
 set -e
 
 phpini=/usr/local/etc/php/php.ini
@@ -50,5 +40,12 @@ fi
 # sed -i "s/;date.timezone =/date.timezone = ${PHP_TIMEZONE}/g" ${phpini}
 #fi
 
+if [ -z "${PHP_MODULE_MEMCACHED}" ]; then
+ sed -i "s/extension=memcached.so/;extension=memcached.so/g" /usr/local/etc/php/conf.d/docker-php-ext-memcached.ini
+else
+    if [ ${PHP_MODULE_MEMCACHED} == 'Off' ]; then
+	 sed -i "s/extension=memcached.so/;extension=memcached.so/g" /usr/local/etc/php/conf.d/docker-php-ext-memcached.ini
+    fi
+fi
 
 exec "$@"

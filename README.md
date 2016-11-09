@@ -24,7 +24,7 @@ sudo docker run -d mirafox/apache-php
  - **PHP_POST_MAX_SIZE**: устанавливает значение директивы post_max_size, по умолчанию 8M
  - **PHP_ALLOW_URL_FOPEN**: устанавливает значение директивы allow_url_fopen, по умолчанию On
 
-### Примеры использования
+#### Примеры использования
 
 ```
 sudo docker run -d -e 'PHP_TIMEZONE=Europe/Moscow' -e 'PHP_MEMORY_LIMIT=512' -e 'PHP_SHORT_OPEN_TAG=On' -e 'PHP_UPLOAD_MAX_FILEZIZE=16' -e 'PHP_MAX_EXECUTION_TIME=120' -e 'PHP_MAX_INPUT_TIME=120' -e 'PHP_DISPLAY_ERRORS=On' -e 'PHP_POST_MAX_SIZE=32' -e 'PHP_ALLOW_URL_FOPEN=Off'  mirafox/apache-php
@@ -34,10 +34,8 @@ sudo docker run -d -e 'PHP_TIMEZONE=Europe/Moscow' -e 'PHP_MEMORY_LIMIT=512' -e 
 
  - **PHP_MODULE_MEMCACHED**: при установки в значение On подключается расширение memcached
 
-### Примеры использования
+#### Примеры использования
 
 ```
 sudo docker run -e 'PHP_MODULE_MEMCACHED=On' -d mirafox/apache-php
 ```
-
-

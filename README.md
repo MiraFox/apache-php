@@ -21,3 +21,9 @@ PHP_POST_MAX_SIZE=number
 
 PHP_ALLOW_URL_FOPEN=On/Off
 
+# Запуск
+
+```
+sudo docker run -d mirafox/apache-php
+```
+

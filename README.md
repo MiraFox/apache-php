@@ -2,7 +2,14 @@
 
 Это Dockerfile, позволяющие собрать простой образ для Docker с Apache и PHP (как модуль). Имеется возможность изменения параметров PHP, доступно две версии PHP 7.0 и 5.6.
 
-PHP собран с поддержкой следующих модулей: gd, mysqli, opcache, pdo, pdo_mysql, intl, dom, xml, xsl, xmlrpc, zip, bz2, fileinfo, curl, iconv, json, soap, memcached (по умолчанию выключен)
+###PHP собран с поддержкой следующих модулей###
+
+ - **Расширения, включенные по умолчанию:** gd, mysqli, pdo, pdo_mysql, intl, dom, xml, xsl, xmlrpc, zip, bz2, fileinfo, curl, iconv, json, soap, calendar, gettext, mcrypt, tidy, phar, gettext, mysql (доступно только для php 5.6), imagick
+ - **Расширения, отключенные по умолчанию:** mongodb, gearman, opcache, memcached , redis, imap, ldap, xcache (доступоно только для PHP 5.6)
+
+## Репозиторий GIT
+
+Репозиторий исходных файлов данного проекта: [https://github.com/MiraFox/apache-php](https://github.com/MiraFox/apache-php)
 
 ## Запуск
 
@@ -33,6 +40,13 @@ sudo docker run -d -e 'PHP_TIMEZONE=Europe/Moscow' -e 'PHP_MEMORY_LIMIT=512' -e 
 ### Параметры подключения расширений PHP
 
  - **PHP_MODULE_MEMCACHED**: при установки в значение On подключается расширение memcached
+ - **PHP_MODULE_OPCACHE**: при установки в значение On подключается расширение OPcache
+ - **PHP_MODULE_XCACHE**: при установки в значение On подключается расширение XCache (только для версии PHP 5.6)
+ - **PHP_MODULE_REDIS**: при установки в значение On подключается расширение Redis
+ - **PHP_MODULE_MONGO**: при установки в значение On подключается расширение MongoDB
+ - **PHP_MODULE_GEARMAN**: при установки в значение On подключается расширение Gearman
+ - **PHP_MODULE_IMAP**: при установки в значение On подключается расширение IMAP
+ - **PHP_MODULE_LDAP**: при установки в значение On подключается расширение LDAP
 
 #### Примеры использования
 

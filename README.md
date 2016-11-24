@@ -2,14 +2,27 @@
 
 Это Dockerfile, позволяющие собрать простой образ для Docker с Apache и PHP (как модуль). Имеется возможность изменения параметров PHP, доступно две версии PHP 7.0 и 5.6.
 
-###PHP собран с поддержкой следующих модулей###
+### PHP собран с поддержкой следующих модулей
 
  - **Расширения, включенные по умолчанию:** gd, mysqli, pdo, pdo_mysql, intl, dom, xml, xsl, xmlrpc, zip, bz2, fileinfo, curl, iconv, json, soap, calendar, gettext, mcrypt, tidy, phar, gettext, mysql (доступно только для php 5.6), imagick
- - **Расширения, отключенные по умолчанию:** mongodb, gearman, opcache, memcached , redis, imap, ldap, xcache (доступоно только для PHP 5.6)
+ - **Расширения, отключенные по умолчанию:** mongodb, gearman, opcache, memcached , redis, imap, ldap, xcache (доступно только для PHP 5.6)
 
 ## Репозиторий GIT
 
 Репозиторий исходных файлов данного проекта: [https://github.com/MiraFox/apache-php](https://github.com/MiraFox/apache-php)
+
+## Версии
+
+| Tag | Apache | PHP |
+|-----|-------|-----|
+| latest | 2.4.10 | 7.0.13 |
+| 5.6 | 2.4.10 | 5.6.28 |
+
+## Использование Docker Hub
+
+```
+sudo docker pull mirafox/apache-php
+```
 
 ## Запуск
 
@@ -61,5 +74,5 @@ sudo docker run -d \
 #### Примеры использования
 
 ```
-sudo docker run -e 'PHP_MODULE_MEMCACHED=On' -d mirafox/apache-php
+sudo docker run -d -e 'PHP_MODULE_MEMCACHED=On' -d mirafox/apache-php
 ```

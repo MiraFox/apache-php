@@ -90,15 +90,6 @@ else
     fi
 fi
 
-# Only PHP 5.6
-if [ -z "${PHP_MODULE_XCACHE}" ]; then
-    rm -f /usr/local/etc/php/conf.d/docker-php-ext-xcache.ini
-else
-    if [ ${PHP_MODULE_XCACHE} == 'Off' ]; then
-	rm -f /usr/local/etc/php/conf.d/docker-php-ext-xcache.ini
-    fi
-fi
-
 if [ -z "${PHP_MODULE_OPCACHE}" ]; then
     rm -f /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 else

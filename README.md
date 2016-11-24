@@ -1,6 +1,6 @@
 ## Описание
 
-Это Dockerfile, позволяющие собрать простой образ для Docker с Apache и PHP (как модуль). Имеется возможность изменения параметров PHP, доступно две версии PHP 7.0 и 5.6.
+Это Dockerfile, позволяющие собрать простой образ для Docker с Apache, PHP (как модуль) и поддержкой Let's Encrypt. Имеется возможность изменения параметров PHP, доступно две версии PHP 7.0 и 5.6.
 
 ### PHP собран с поддержкой следующих модулей
 
@@ -20,6 +20,8 @@
 | Tag | Apache | PHP |
 |-----|-------|-----|
 | latest | 2.4.10 | 7.0.13 |
+| 7.1 | 2.4.10 | 7.1.0-rc6 |
+| 7.0 | 2.4.10 | 7.0.13 |
 | 5.6 | 2.4.10 | 5.6.28 |
 
 ## Использование Docker Hub
@@ -48,7 +50,7 @@ sudo docker run -d mirafox/apache-php
  - **PHP_POST_MAX_SIZE**: устанавливает значение директивы post_max_size, по умолчанию 8M
  - **PHP_ALLOW_URL_FOPEN**: устанавливает значение директивы allow_url_fopen, по умолчанию On
 
-#### Примеры использования
+#### Пример использования
 
 ```
 sudo docker run -d \
@@ -75,8 +77,38 @@ sudo docker run -d \
  - **PHP_MODULE_IMAP**: при установки в значение On подключается расширение IMAP
  - **PHP_MODULE_LDAP**: при установки в значение On подключается расширение LDAP
 
-#### Примеры использования
+#### Пример использования
 
 ```
 sudo docker run -d -e 'PHP_MODULE_MEMCACHED=On' -d mirafox/apache-php
+```
+
+## Поддержка Let's Encrypt
+
+Данный образ имеет поддержку SSL сертификатов Let's Encrypt. Для установки сертификата необходимо при запуске контейнера добавить параметры:
+
+ - **SSL_DOMAIN**: имя домена, на который будет выдан SSL сертификат
+ - **SSL_EMAIL**: E-Mail администратора домена
+
+**Оба параметра обязательны, если Вы желаете использовать Let's Encrypt**
+
+#### Пример использования
+
+```
+sudo docker run -d \
+    -e 'SSL_DOMAIN=example.com' \
+    -e 'SSL_EMAIL=admin@example.com' \
+    mirafox/apache-php
+```
+
+### Установка сертификата
+
+```
+docker exec -it <CONTAINER_NAME> /usr/local/bin/letsencrypt-init
+```
+
+### Перевыпуск сертификата
+
+```
+docker exec -it <CONTAINER_NAME> /usr/local/bin/letsencrypt-renew
 ```

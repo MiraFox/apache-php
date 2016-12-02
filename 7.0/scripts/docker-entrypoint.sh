@@ -105,4 +105,6 @@ opcache.enable_cli=1" > /usr/local/etc/php/conf.d/opcache.ini
     fi
 fi
 
+/usr/bin/supervisord -n -c /etc/supervisord.conf
+
 exec "$@"

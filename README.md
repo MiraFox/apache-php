@@ -33,7 +33,10 @@ sudo docker pull mirafox/apache-php
 ## Запуск
 
 ```
-sudo docker run -d mirafox/apache-php
+sudo docker run -d -p 80:80 -p 443:443 \
+    -v /home/username/sitename/www/:/var/www/html/ \
+    -v /home/username/sitename/logs/:/var/log/apache2/ \
+    mirafox/apache-php
 ```
 
 ## Доступные параметры конфигурации

@@ -44,9 +44,8 @@ RUN echo deb http://httpredir.debian.org/debian jessie-backports main | tee /etc
 
 COPY config/php.ini /usr/local/etc/php/
 COPY config/supervisord.conf /etc/supervisord.conf
-COPY scripts/letsencrypt-init /usr/local/bin/letsencrypt-init
-COPY scripts/letsencrypt-renew /usr/local/bin/letsencrypt-renew
-COPY scripts/docker-entrypoint.sh /usr/local/bin/
+COPY scripts/ /usr/local/bin/
+COPY src/ /var/www/html/
 
 RUN chmod 755 /usr/local/bin/letsencrypt-init \
     && chmod 755 /usr/local/bin/letsencrypt-renew \

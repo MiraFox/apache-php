@@ -2,7 +2,7 @@
 
 set -e
 
-PHP_TIMEZONE1=`echo ${PHP_TIMEZONE} |sed  's|\/|\\\/|g'`
+PHP_TZ=`echo ${PHP_TIMEZONE} |sed  's|\/|\\\/|g'`
 
 phpini=/usr/local/etc/php/php.ini
 
@@ -12,6 +12,8 @@ fi
 
 if [ ! -z "${PHP_SHORT_OPEN_TAG}" ]; then
     sed -i "s/short_open_tag = Off/short_open_tag = ${PHP_SHORT_OPEN_TAG}/g" ${phpini}
+else
+    sed -i "s/short_open_tag = Off/short_open_tag = On/g" ${phpini}
 fi
 
 if [ ! -z "${PHP_UPLOAD_MAX_FILEZIZE}" ]; then
@@ -39,7 +41,9 @@ if [ ! -z "${PHP_ALLOW_URL_FOPEN}" ]; then
 fi
 
 if [ ! -z "${PHP_TIMEZONE}" ]; then
-    sed -i "s/;date.timezone =/date.timezone = ${PHP_TIMEZONE1}/g" ${phpini}
+    sed -i "s/;date.timezone =/date.timezone = ${PHP_TZ}/g" ${phpini}
+else
+    sed -i "s/;date.timezone =/date.timezone = Europe\/Moscow/g" ${phpini}
 fi
 
 if [ -z "${PHP_MODULE_MEMCACHED}" ]; then

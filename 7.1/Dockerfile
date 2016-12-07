@@ -1,4 +1,4 @@
-FROM php:7.1-rc-apache
+FROM php:7.1-apache
 MAINTAINER Ruzhentsev Alexandr noc@mirafox.ru
 
 RUN apt-get update && apt-get -y upgrade && apt-get install -y git supervisor ssl-cert libpng12-dev libjpeg-dev libsqlite3-dev \
@@ -47,9 +47,8 @@ RUN echo deb http://httpredir.debian.org/debian jessie-backports main | tee /etc
 
 COPY config/php.ini /usr/local/etc/php/
 COPY config/supervisord.conf /etc/supervisord.conf
-COPY scripts/letsencrypt-init /usr/local/bin/letsencrypt-init
-COPY scripts/letsencrypt-renew /usr/local/bin/letsencrypt-renew
-COPY scripts/docker-entrypoint.sh /usr/local/bin/
+COPY scripts/ /usr/local/bin/
+COPY src/ /var/www/html/
 
 RUN chmod 755 /usr/local/bin/letsencrypt-init \
     && chmod 755 /usr/local/bin/letsencrypt-renew \

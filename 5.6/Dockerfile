@@ -43,6 +43,8 @@ RUN echo deb http://httpredir.debian.org/debian jessie-backports main | tee /etc
     && apt-get clean
 
 COPY config/php.ini /usr/local/etc/php/
+COPY config/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+COPY config/xcache.ini /usr/local/etc/php/conf.d/xcache.ini
 COPY config/supervisord.conf /etc/supervisord.conf
 COPY scripts/ /usr/local/bin/
 COPY src/ /var/www/html/

@@ -119,3 +119,9 @@ docker exec -it <CONTAINER_NAME> /usr/local/bin/letsencrypt-init
 ```
 docker exec -it <CONTAINER_NAME> /usr/local/bin/letsencrypt-renew
 ```
+
+## Использование PHP Composer
+
+```
+docker exec -it <CONTAINER_NAME> /usr/local/bin/composer
+```

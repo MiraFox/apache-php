@@ -7,8 +7,6 @@
  - **Расширения, включенные по умолчанию:** gd, mysqli, pdo, pdo_mysql, intl, dom, xml, xsl, xmlrpc, zip, bz2, fileinfo, curl, iconv, json, soap, calendar, gettext, mcrypt, tidy, phar, gettext, mysql (доступно только для php 5.6), imagick
  - **Расширения, отключенные по умолчанию:** mongodb, gearman, opcache, memcached , redis, imap, ldap, xcache (доступно только для PHP 5.6)
 
-PHP Composer: **/usr/local/bin/composer**
-
 ## Репозиторий Git
 
 Репозиторий исходных файлов данного проекта: [https://github.com/MiraFox/apache-php](https://github.com/MiraFox/apache-php)

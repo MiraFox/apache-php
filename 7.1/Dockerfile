@@ -48,6 +48,7 @@ RUN apt-get update && apt-get -y upgrade && apt-get install -y git supervisor ss
     && php -r "unlink('composer-setup.php');"
 
 COPY config/php.ini 		/usr/local/etc/php/
+COPY config/opcache.ini 	/usr/local/etc/php/conf.d/opcache.ini
 COPY config/supervisord.conf 	/etc/supervisord.conf
 COPY scripts/ 			/usr/local/bin/
 COPY src/ 			/var/www/html/

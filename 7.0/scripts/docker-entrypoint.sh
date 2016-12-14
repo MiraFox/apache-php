@@ -68,13 +68,7 @@ fi
 
 if [ ${PHP_MODULE_OPCACHE} == 'Off' ]; then
     rm -f /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
-else
-    echo "opcache.memory_consumption=128" 	 > /usr/local/etc/php/conf.d/opcache.ini
-    echo "opcache.interned_strings_buffer=8" 	>> /usr/local/etc/php/conf.d/opcache.ini
-    echo "opcache.max_accelerated_files=4000" 	>> /usr/local/etc/php/conf.d/opcache.ini
-    echo "opcache.revalidate_freq=2" 		>> /usr/local/etc/php/conf.d/opcache.ini
-    echo "opcache.fast_shutdown=1" 		>> /usr/local/etc/php/conf.d/opcache.ini
-    echo "opcache.enable_cli=1" 		>> /usr/local/etc/php/conf.d/opcache.ini
+    rm -f /usr/local/etc/php/conf.d/opcache.ini
 fi
 
 /usr/bin/supervisord -n -c /etc/supervisord.conf

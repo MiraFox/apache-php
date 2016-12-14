@@ -37,18 +37,20 @@ RUN apt-get update && apt-get -y upgrade && apt-get install -y git supervisor ss
         && make -j$(nproc) && make install \
     ) \
     && rm -r pecl-gearman \
-    && docker-php-ext-enable redis memcached mongodb imagick gearman
-
-RUN echo deb http://httpredir.debian.org/debian jessie-backports main | tee /etc/apt/sources.list.d/backports.list \
+    && docker-php-ext-enable redis memcached mongodb imagick gearman \
+    && echo deb http://httpredir.debian.org/debian jessie-backports main | tee /etc/apt/sources.list.d/backports.list \
     && apt-get update && apt-get install -y python-certbot-apache -t jessie-backports \
     && apt-get purge --auto-remove -y gcc make \
     && rm -rf /var/lib/apt/lists/* \
-    && apt-get clean
+    && apt-get clean \
+    && php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && php -r "unlink('composer-setup.php');"
 
-COPY config/php.ini /usr/local/etc/php/
-COPY config/supervisord.conf /etc/supervisord.conf
-COPY scripts/ /usr/local/bin/
-COPY src/ /var/www/html/
+COPY config/php.ini 		/usr/local/etc/php/
+COPY config/supervisord.conf 	/etc/supervisord.conf
+COPY scripts/ 			/usr/local/bin/
+COPY src/ 			/var/www/html/
 
 RUN chmod 755 /usr/local/bin/letsencrypt-init \
     && chmod 755 /usr/local/bin/letsencrypt-renew \
